@@ -2,13 +2,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const router = require("./router.js");
-
 const app = express();
+const router = require("./router.js");
+const mongoose = require("mongoose");
+
+//DB Setup
+mongoose.connect('mongodb://localhost:auth/auth');
+
 
 // App setup
 app.use(morgan('combined'));
 app.use(bodyParser.json({type: '*/*'}));
+
 router(app);
 
 // Server setup
